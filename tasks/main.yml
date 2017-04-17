@@ -39,3 +39,11 @@
   args:
     chdir: '{{stunnel_src_dir}}'
     creates: /usr/local/bin/stunnel
+
+- name: cleanup
+  become: yes
+  become_user: root
+  when: stunnel_cleanup
+  file:
+    path: '{{stunnel_src_dir}}'
+    state: absent
