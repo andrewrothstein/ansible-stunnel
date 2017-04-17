@@ -1,0 +1,9 @@
+---
+# vars file for stunnel
+stunnel_name: stunnel-{{stunnel_version}}
+stunnel_tgz: '{{stunnel_name}}.tar.gz'
+
+# https://www.stunnel.org/downloads/stunnel-5.41.tar.gz
+stunnel_tgz_url: '{{stunnel_mirror}}/{{stunnel_tgz}}'
+
+stunnel_src_dir: '{{stunnel_parent_src_dir}}/{{stunnel_name}}'

@@ -1,0 +1,41 @@
+---
+- name: download src
+  become: yes
+  become_user: root
+  get_url:
+    url: '{{stunnel_tgz_url}}'
+    dest: /tmp/{{stunnel_tgz}}
+    mode: 0644
+
+- name: unarchive
+  become: yes
+  become_user: root
+  unarchive:
+    copy: no
+    src: /tmp/{{stunnel_tgz}}
+    dest: '{{stunnel_parent_src_dir}}'
+    creates: '{{stunnel_src_dir}}'
+
+- name: configure
+  become: yes
+  become_user: root
+  command: ./configure
+  args:
+    chdir: '{{stunnel_src_dir}}'
+    creates: '{{stunnel_src_dir}}/Makefile'
+
+- name: make
+  become: yes
+  become_user: root
+  command: make
+  args:
+    chdir: '{{stunnel_src_dir}}'
+    creates: '{{stunnel_src_dir}}/src/stunnel'
+
+- name: make install
+  become: yes
+  become_user: root
+  command: make install
+  args:
+    chdir: '{{stunnel_src_dir}}'
+    creates: /usr/local/bin/stunnel
