@@ -2,7 +2,7 @@
 andrewrothstein.stunnel
 =========
 
-Installs [stunnel](https://www.stunnel.org)
+Installs [stunnel](https://www.stunnel.org).
 
 Requirements
 ------------
