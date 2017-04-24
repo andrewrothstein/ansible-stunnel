@@ -66,7 +66,7 @@
     - '{{stunnel_conf_dir}}'
     - '{{stunnel_profile_dir}}'
   file:
-    path: 
+    path: '{{item}}'
     state: directory
     mode: 0755
 
