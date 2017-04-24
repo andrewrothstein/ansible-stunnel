@@ -7,3 +7,4 @@ stunnel_tgz: '{{stunnel_name}}.tar.gz'
 stunnel_tgz_url: '{{stunnel_mirror}}/{{stunnel_tgz}}'
 
 stunnel_src_dir: '{{stunnel_parent_src_dir}}/{{stunnel_name}}'
+stunnel_install_bin_dir: '{{stunnel_install_prefix}}/bin'

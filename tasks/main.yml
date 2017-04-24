@@ -38,7 +38,7 @@
 - name: configure
   become: yes
   become_user: root
-  command: ./configure
+  command: ./configure --prefix={{stunnel_install_prefix}}
   args:
     chdir: '{{stunnel_src_dir}}'
     creates: '{{stunnel_src_dir}}/Makefile'
@@ -62,10 +62,25 @@
 - name: make config directory
   become: yes
   become_user: root
+  with_items:
+    - '{{stunnel_conf_dir}}'
+    - '{{stunnel_profile_dir}}'
   file:
-    path: '{{stunnel_conf_dir}}'
+    path: 
     state: directory
     mode: 0755
+
+- name: install the stunnel entry point
+  become: yes
+  become_user: root
+  with_items:
+    - f: boot-stunnel.sh
+      d: '{{stunnel_install_bin_dir}}'
+      m: '0755'
+  template:
+    src: '{{item.f}}.j2'
+    dest: '{{item.d}}/{{item.f}}'
+    mode: '{{item.m}}'
 
 - name: cleanup
   become: yes

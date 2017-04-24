@@ -6,3 +6,5 @@ stunnel_mirror: https://www.stunnel.org/downloads
 stunnel_parent_src_dir: /usr/local
 stunnel_conf_dir: /etc/stunnel
 stunnel_cleanup: True
+stunnel_install_prefix: /usr/local
+stunnel_profile_dir: /etc/stunnel-profile.d
