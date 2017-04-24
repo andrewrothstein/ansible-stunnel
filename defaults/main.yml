@@ -4,4 +4,5 @@ stunnel_version: '5.41'
 stunnel_checksum: sha256:f05c6321ee1f6ddebacc234ccf20825971941e831b5beea6d0ce0b8e1668148f
 stunnel_mirror: https://www.stunnel.org/downloads
 stunnel_parent_src_dir: /usr/local
+stunnel_conf_dir: /etc/stunnel
 stunnel_cleanup: True
