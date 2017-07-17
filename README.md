@@ -1,6 +1,6 @@
-[![CircleCI](https://circleci.com/gh/andrewrothstein/ansible-stunnel.svg?style=svg)](https://circleci.com/gh/andrewrothstein/ansible-stunnel)
 andrewrothstein.stunnel
 =========
+[![Build Status](https://travis-ci.org/andrewrothstein/ansible-stunnel.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-stunnel)
 
 Installs [stunnel](https://www.stunnel.org).
 
