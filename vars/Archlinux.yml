@@ -1,0 +1,3 @@
+---
+stunnel_dep_pkgs:
+  - openssl
