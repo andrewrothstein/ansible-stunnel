@@ -10,14 +10,6 @@
       paths:
         - '{{role_path}}/vars'
 
-- name: install dep pkgs
-  become: yes
-  become_user: root
-  with_items: '{{stunnel_dep_pkgs|default([])}}'
-  package:
-    name: '{{item}}'
-    state: present
-        
 - name: download src
   become: yes
   become_user: root

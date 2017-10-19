@@ -1,4 +1,0 @@
----
-stunnel_dep_pkgs:
-  - openssl
-  - openssl-devel

@@ -23,7 +23,9 @@ galaxy_info:
     - development
 
 dependencies:
-  - role: andrewrothstein.unarchive-deps
+  - src: andrewrothstein.unarchive-deps
     version: v1.0.9
-  - role: andrewrothstein.gcc-toolbox
+  - src: andrewrothstein.gcc-toolbox
     version: v1.0.6
+  - src: andrewrothstein.openssl
+    version: v1.0.0
