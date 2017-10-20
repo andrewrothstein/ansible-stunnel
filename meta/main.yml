@@ -29,3 +29,4 @@ dependencies:
     version: v1.0.6
   - src: andrewrothstein.openssl
     version: v1.0.0
+    openssl_include_dev_pkgs: True
