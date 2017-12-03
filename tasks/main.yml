@@ -16,6 +16,7 @@
   get_url:
     url: '{{stunnel_tgz_url}}'
     dest: /tmp/{{stunnel_tgz}}
+    checksum: '{{stunnel_checksum}}'
     mode: 0644
 
 - name: unarchive
