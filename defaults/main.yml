@@ -1,4 +1,4 @@
-\---
+---
 # defaults file for stunnel
 stunnel_version: '5.44'
 stunnel_checksum:
