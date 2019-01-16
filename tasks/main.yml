@@ -1,22 +1,22 @@
 ---
 - name: resolve platform specific vars
-  include_vars: '{{item}}'
+  include_vars: '{{ item }}'
   with_first_found:
     - files:
-        - '{{ansible_distribution}}-{{ansible_distribution_release}}.yml'
-        - '{{ansible_distribution}}.yml'
-        - '{{ansible_os_family}}.yml'
+        - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
+        - '{{ ansible_distribution }}.yml'
+        - '{{ ansible_os_family }}.yml'
       skip: true
       paths:
-        - '{{role_path}}/vars'
+        - '{{ role_path }}/vars'
 
 - name: download src
   become: yes
   become_user: root
   get_url:
-    url: '{{stunnel_tgz_url}}'
-    dest: /tmp/{{stunnel_tgz}}
-    checksum: '{{stunnel_checksum}}'
+    url: '{{ stunnel_tgz_url }}'
+    dest: /tmp/{{ stunnel_tgz }}
+    checksum: '{{ stunnel_checksum }}'
     mode: 0644
 
 - name: unarchive
@@ -24,42 +24,42 @@
   become_user: root
   unarchive:
     remote_src: yes
-    src: /tmp/{{stunnel_tgz}}
-    dest: '{{stunnel_parent_src_dir}}'
-    creates: '{{stunnel_src_dir}}'
+    src: /tmp/{{ stunnel_tgz }}
+    dest: '{{ stunnel_parent_src_dir }}'
+    creates: '{{ stunnel_src_dir }}'
 
 - name: configure
   become: yes
   become_user: root
-  command: ./configure --prefix={{stunnel_install_prefix}}
+  command: ./configure --prefix={{ stunnel_install_prefix }}
   args:
-    chdir: '{{stunnel_src_dir}}'
-    creates: '{{stunnel_src_dir}}/Makefile'
+    chdir: '{{ stunnel_src_dir }}'
+    creates: '{{ stunnel_src_dir }}/Makefile'
 
 - name: make
   become: yes
   become_user: root
   command: make
   args:
-    chdir: '{{stunnel_src_dir}}'
-    creates: '{{stunnel_src_dir}}/src/stunnel'
+    chdir: '{{ stunnel_src_dir }}'
+    creates: '{{ stunnel_src_dir }}/src/stunnel'
 
 - name: make install
   become: yes
   become_user: root
   command: make install
   args:
-    chdir: '{{stunnel_src_dir}}'
+    chdir: '{{ stunnel_src_dir }}'
     creates: /usr/local/bin/stunnel
 
 - name: make config directory
   become: yes
   become_user: root
   with_items:
-    - '{{stunnel_conf_dir}}'
-    - '{{stunnel_profile_dir}}'
+    - '{{ stunnel_conf_dir }}'
+    - '{{ stunnel_profile_dir }}'
   file:
-    path: '{{item}}'
+    path: '{{ item }}'
     state: directory
     mode: 0755
 
@@ -68,17 +68,17 @@
   become_user: root
   with_items:
     - f: boot-stunnel.sh
-      d: '{{stunnel_install_bin_dir}}'
+      d: '{{ stunnel_install_bin_dir }}'
       m: '0755'
   template:
-    src: '{{item.f}}.j2'
-    dest: '{{item.d}}/{{item.f}}'
-    mode: '{{item.m}}'
+    src: '{{ item.f }}.j2'
+    dest: '{{ item.d }}/{{ item.f }}'
+    mode: '{{ item.m }}'
 
 - name: cleanup
   become: yes
   become_user: root
   when: stunnel_cleanup
   file:
-    path: '{{stunnel_src_dir}}'
+    path: '{{ stunnel_src_dir }}'
     state: absent

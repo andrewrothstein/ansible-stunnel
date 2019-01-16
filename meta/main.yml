@@ -25,7 +25,7 @@ dependencies:
   - src: andrewrothstein.unarchive-deps
     version: v1.0.10
   - src: andrewrothstein.gcc-toolbox
-    version: v1.0.7
+    version: v1.0.9
   - role: andrewrothstein.openssl
     version: v1.0.0
     openssl_include_dev_pkgs: True
