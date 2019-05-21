@@ -5,6 +5,7 @@ dependencies:
   version: v1.0.11
 - role: andrewrothstein.openssl
   version: v1.0.0
+  openssl_include_dev_pkgs: True
 galaxy_info:
   author: Andrew Rothstein
   company: BlackRock
