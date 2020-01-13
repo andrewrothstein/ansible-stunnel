@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-VER=5.55
+VER=5.56
 URL=https://www.stunnel.org/downloads/stunnel-${VER}.tar.gz.sha256
 
 printf "  # %s\n" $URL
