@@ -10,28 +10,28 @@
       paths:
         - '{{ role_path }}/vars'
 
-- name: download src
+- name: downloading {{ stunnel_tgz_url }}
   become: yes
   become_user: root
   get_url:
     url: '{{ stunnel_tgz_url }}'
-    dest: /tmp/{{ stunnel_tgz }}
+    dest: '{{ stunnel_tmp_tgz }}'
     checksum: '{{ stunnel_checksum }}'
     mode: 0644
 
-- name: unarchive
+- name: unarchive {{ stunnel_tmp_tgz }} to {{ stunnel_parent_src_dir }}
   become: yes
   become_user: root
   unarchive:
     remote_src: yes
-    src: /tmp/{{ stunnel_tgz }}
+    src: '{{ stunnel_tmp_tgz }}'
     dest: '{{ stunnel_parent_src_dir }}'
     creates: '{{ stunnel_src_dir }}'
 
 - name: configure
   become: yes
   become_user: root
-  command: ./configure --prefix={{ stunnel_install_prefix }}
+  command: '{{ stunnel_src_dir}}/configure --prefix={{ stunnel_install_prefix }}'
   args:
     chdir: '{{ stunnel_src_dir }}'
     creates: '{{ stunnel_src_dir }}/Makefile'
