@@ -1,6 +1,6 @@
 andrewrothstein.stunnel
 =========
-[![Build Status](https://travis-ci.org/andrewrothstein/ansible-stunnel.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-stunnel)
+![Build Status](https://github.com/andrewrothstein/ansible-stunnel/actions/workflows/build.yml/badge.svg)
 
 Installs [stunnel](https://www.stunnel.org).
 
