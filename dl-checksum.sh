@@ -9,4 +9,4 @@ dl() {
     printf "  '%s': sha256:%s\n" $ver $(curl -sSL $url | awk '{print $1}')
 }
 
-dl ${1:-5.58}
+dl ${1:-5.60}
