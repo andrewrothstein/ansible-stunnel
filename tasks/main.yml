@@ -11,7 +11,7 @@
         - '{{ role_path }}/vars'
 
 - name: downloading {{ stunnel_tgz_url }}
-  become: yes
+  become: true
   become_user: root
   get_url:
     url: '{{ stunnel_tgz_url }}'
@@ -20,16 +20,16 @@
     mode: 0644
 
 - name: unarchive {{ stunnel_tmp_tgz }} to {{ stunnel_parent_src_dir }}
-  become: yes
+  become: true
   become_user: root
   unarchive:
-    remote_src: yes
+    remote_src: true
     src: '{{ stunnel_tmp_tgz }}'
     dest: '{{ stunnel_parent_src_dir }}'
     creates: '{{ stunnel_src_dir }}'
 
 - name: configure
-  become: yes
+  become: true
   become_user: root
   command: '{{ stunnel_src_dir}}/configure --prefix={{ stunnel_install_prefix }}'
   args:
@@ -37,7 +37,7 @@
     creates: '{{ stunnel_src_dir }}/Makefile'
 
 - name: make
-  become: yes
+  become: true
   become_user: root
   command: make
   args:
@@ -45,7 +45,7 @@
     creates: '{{ stunnel_src_dir }}/src/stunnel'
 
 - name: make install
-  become: yes
+  become: true
   become_user: root
   command: make install
   args:
@@ -53,7 +53,7 @@
     creates: /usr/local/bin/stunnel
 
 - name: make config directory
-  become: yes
+  become: true
   become_user: root
   with_items:
     - '{{ stunnel_conf_dir }}'
@@ -64,7 +64,7 @@
     mode: 0755
 
 - name: install the stunnel entry point
-  become: yes
+  become: true
   become_user: root
   with_items:
     - f: boot-stunnel.sh
@@ -76,7 +76,7 @@
     mode: '{{ item.m }}'
 
 - name: cleanup
-  become: yes
+  become: true
   become_user: root
   when: stunnel_cleanup
   file:
