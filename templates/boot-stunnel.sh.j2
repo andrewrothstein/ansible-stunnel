@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
-for i in $(ls {{ stunnel_profile_dir }}/*.sh 2>/dev/null | sort) ; do
+for i in $(ls {{ stunnel_profile_dir }}/*.sh 2>/dev/null | sort);
+do
     if [ -r "$i" ]; then
-	. $i
+	      . $i
     fi
 done
 
