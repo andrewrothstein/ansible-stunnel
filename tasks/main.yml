@@ -1,4 +1,12 @@
 ---
+- include_role:
+    name: andrewrothstein.unarchive-deps
+- include_role:
+    name: andrewrothstein.gcc-toolbox
+- include_role:
+    name: andrewrothstein.openssl
+  vars:
+    openssl_include_dev_pkgs: true
 - name: resolve platform specific vars
   include_vars: '{{ item }}'
   with_first_found:

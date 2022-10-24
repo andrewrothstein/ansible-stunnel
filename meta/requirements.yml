@@ -1,7 +1,7 @@
 ---
 - name: andrewrothstein.unarchive-deps
-  version: v1.2.3
+  version: v1.2.4
 - name: andrewrothstein.gcc-toolbox
-  version: v1.1.5
+  version: v1.1.9
 - name: andrewrothstein.openssl
-  version: v1.0.7
+  version: v1.0.11
