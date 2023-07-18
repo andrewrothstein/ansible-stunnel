@@ -39,7 +39,7 @@
 - name: configure
   become: true
   become_user: root
-  command: '{{ stunnel_src_dir}}/configure --prefix={{ stunnel_install_prefix }}'
+  command: '{{ stunnel_src_dir }}/configure --prefix={{ stunnel_install_prefix }}'
   args:
     chdir: '{{ stunnel_src_dir }}'
     creates: '{{ stunnel_src_dir }}/Makefile'
