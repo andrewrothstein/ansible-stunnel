@@ -1,8 +1,8 @@
 ---
 - include_role:
-    name: andrewrothstein.unarchive-deps
+    name: andrewrothstein.unarchivedeps
 - include_role:
-    name: andrewrothstein.gcc-toolbox
+    name: andrewrothstein.gcc_toolbox
 - include_role:
     name: andrewrothstein.openssl
   vars:
