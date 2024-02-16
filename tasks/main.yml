@@ -1,14 +1,17 @@
 ---
-- include_role:
+- name: Installing andrewrothstein.unarchivedeps
+  ansible.builtin.include_role:
     name: andrewrothstein.unarchivedeps
-- include_role:
+- name: Installing andrewrothstein.gcc_toolbox
+  ansible.builtin.include_role:
     name: andrewrothstein.gcc_toolbox
-- include_role:
+- name: Installing andrewrothstein.openssl
+  ansible.builtin.include_role:
     name: andrewrothstein.openssl
   vars:
     openssl_include_dev_pkgs: true
-- name: resolve platform specific vars
-  include_vars: '{{ item }}'
+- name: Resolve platform specific vars
+  ansible.builtin.include_vars: '{{ item }}'
   with_first_found:
     - files:
         - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
@@ -18,75 +21,75 @@
       paths:
         - '{{ role_path }}/vars'
 
-- name: downloading {{ stunnel_tgz_url }}
+- name: Downloading {{ stunnel_tgz_url }}
   become: true
   become_user: root
-  get_url:
+  ansible.builtin.get_url:
     url: '{{ stunnel_tgz_url }}'
     dest: '{{ stunnel_tmp_tgz }}'
     checksum: '{{ stunnel_checksum }}'
-    mode: 0644
+    mode: '644'
 
-- name: unarchive {{ stunnel_tmp_tgz }} to {{ stunnel_parent_src_dir }}
+- name: Unarchive {{ stunnel_tmp_tgz }} to {{ stunnel_parent_src_dir }}
   become: true
   become_user: root
-  unarchive:
+  ansible.builtin.unarchive:
     remote_src: true
     src: '{{ stunnel_tmp_tgz }}'
     dest: '{{ stunnel_parent_src_dir }}'
     creates: '{{ stunnel_src_dir }}'
 
-- name: configure
+- name: Configure
   become: true
   become_user: root
-  command: '{{ stunnel_src_dir }}/configure --prefix={{ stunnel_install_prefix }}'
+  ansible.builtin.command: '{{ stunnel_src_dir }}/configure --prefix={{ stunnel_install_prefix }}'
   args:
     chdir: '{{ stunnel_src_dir }}'
     creates: '{{ stunnel_src_dir }}/Makefile'
 
-- name: make
+- name: Make
   become: true
   become_user: root
-  command: make
+  ansible.builtin.command: make
   args:
     chdir: '{{ stunnel_src_dir }}'
     creates: '{{ stunnel_src_dir }}/src/stunnel'
 
-- name: make install
+- name: Make install
   become: true
   become_user: root
-  command: make install
+  ansible.builtin.command: make install
   args:
     chdir: '{{ stunnel_src_dir }}'
     creates: /usr/local/bin/stunnel
 
-- name: make config directory
+- name: Make config directory
   become: true
   become_user: root
   with_items:
     - '{{ stunnel_conf_dir }}'
     - '{{ stunnel_profile_dir }}'
-  file:
+  ansible.builtin.file:
     path: '{{ item }}'
     state: directory
-    mode: 0755
+    mode: '755'
 
-- name: install the stunnel entry point
+- name: Install the stunnel entry point
   become: true
   become_user: root
   with_items:
     - f: boot-stunnel.sh
       d: '{{ stunnel_install_bin_dir }}'
-      m: '0755'
-  template:
+      m: '755'
+  ansible.builtin.template:
     src: '{{ item.f }}.j2'
     dest: '{{ item.d }}/{{ item.f }}'
     mode: '{{ item.m }}'
 
-- name: cleanup
+- name: Cleanup
   become: true
   become_user: root
   when: stunnel_cleanup
-  file:
+  ansible.builtin.file:
     path: '{{ stunnel_src_dir }}'
     state: absent
