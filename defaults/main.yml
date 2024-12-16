@@ -1,6 +1,6 @@
 ---
 # defaults file for stunnel
-stunnel_version: '5.72'
+stunnel_version: '5.74'
 stunnel_mirror: https://www.stunnel.org/downloads
 stunnel_parent_src_dir: /usr/local
 stunnel_conf_dir: /etc/stunnel
@@ -50,3 +50,5 @@ stunnel_checksums:
   '5.71': sha256:f023aae837c2d32deb920831a5ee1081e11c78a5d57340f8e6f0829f031017f5
   # https://www.stunnel.org/downloads/stunnel-5.72.tar.gz.sha256
   '5.72': sha256:3d532941281ae353319735144e4adb9ae489a10b7e309c58a48157f08f42e949
+  # https://www.stunnel.org/downloads/stunnel-5.74.tar.gz.sha256
+  '5.74': sha256:9bef235ab5d24a2a8dff6485dfd782ed235f4407e9bc8716deb383fc80cd6230
